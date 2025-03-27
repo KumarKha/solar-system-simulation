@@ -10,6 +10,13 @@ speedSlider.addEventListener("input", () => {
 	speedMultiplier = parseFloat(speedSlider.value);
 	speedValueDisplay.textContent = `${speedMultiplier.toFixed(1)}x`;
 });
+
+let selectedOrbit = "circular";
+
+document.getElementById("orbitType").addEventListener("change", (e) => {
+	selectedOrbit = e.target.value;
+});
+
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
 
@@ -21,6 +28,7 @@ class Planet {
 		this.speed = speed;
 		this.size = size;
 		this.moons = [];
+		this.trail = [];
 	}
 	// Treat the moons like planets
 	addMoon(color, radius, angle, speed, size) {
@@ -29,13 +37,37 @@ class Planet {
 	update() {
 		this.angle += this.speed * speedMultiplier;
 	}
+	drawTrail(centerX, centerY, maxTrail = 50) {
+		const { x, y } = this.getPosition(centerX, centerY);
+		this.trail.push({ x, y });
+
+		if (this.trail.length > maxTrail) {
+			this.trail.shift();
+		}
+
+		for (let i = 0; i < this.trail.length; i++) {
+			const point = this.trail[i];
+			ctx.beginPath();
+			ctx.arc(point.x, point.y, 1.5, 0, Math.PI * 2);
+			ctx.fillStyle = this.color;
+			ctx.globalAlpha = i / this.trail.length;
+			ctx.fill();
+		}
+		ctx.globalAlpha = 1;
+
+		this.moons.forEach((moon) => {
+			moon.drawTrail(x, y, maxTrail);
+		});
+	}
+
 	getPosition(centerX, centerY) {
-		const x = centerX + this.radius * Math.sin(this.angle);
-		const y = centerY + this.radius * Math.cos(this.angle);
-		return { x, y };
+		const orbitFn = orbitFunctions[selectedOrbit] || orbitFunctions.circular;
+		const { x, y } = orbitFn(this.radius, this.angle);
+		return { x: centerX + x, y: centerY + y };
 	}
 	draw(centerX, centerY) {
 		this.update();
+		this.drawTrail(centerX, centerY);
 		const { x, y } = this.getPosition(centerX, centerY);
 
 		ctx.beginPath();
@@ -53,6 +85,30 @@ class Planet {
 		});
 	}
 }
+const orbitFunctions = {
+	circular: (radius, angle) => ({
+		x: radius * Math.sin(angle),
+		y: radius * Math.cos(angle),
+	}),
+	elliptical: (radius, angle) => ({
+		x: radius * Math.sin(angle),
+		y: radius * Math.cos(angle) * 0.5,
+	}),
+	spiral: (radius, angle) => {
+		// Angle grows infinite, so we need to control it
+		const spiralGrowth = 0.05;
+		const r = radius + spiralGrowth * angle;
+
+		return {
+			x: r * Math.sin(angle),
+			y: r * Math.cos(angle),
+		};
+	},
+	wobbly: (radius, angle) => ({
+		x: radius * Math.sin(angle * 2),
+		y: radius * Math.cos(angle * 3),
+	}),
+};
 
 const planets = [];
 
@@ -87,6 +143,17 @@ planets.push(mercury, venus, earth, mars, jupiter, saturn, uranus, neptune);
 // 	{ color: "red", radius: 140, angle: 270, speed: 0.02, size: 4 }, // Mars
 // ];
 
+const stars = [];
+function makeStars(starAmount) {
+	for (let i = 0; i < starAmount; i++) {
+		x = Math.floor(Math.random() * canvas.width);
+		y = Math.floor(Math.random() * canvas.height);
+		alpha = Math.random();
+		delta = Math.random() * 0.02 - 0.01;
+		stars.push({ x, y, alpha, delta });
+	}
+}
+
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -96,9 +163,23 @@ function draw() {
 	ctx.fillStyle = "yellow";
 	ctx.fill();
 
+	stars.forEach((star) => {
+		star.alpha += star.delta;
+
+		if (star.alpha <= 0 || star.alpha >= 1) {
+			star.delta *= -1;
+			star.alpha = Math.max(0, Math.min(1, star.alpha));
+		}
+
+		ctx.beginPath();
+		ctx.arc(star.x, star.y, 3, 0, Math.PI * 2);
+		ctx.fillStyle = `rgba( 255,255,255, ${star.alpha})`;
+		ctx.fill();
+	});
+
 	planets.forEach((planet) => planet.draw(centerX, centerY));
 
 	requestAnimationFrame(draw);
 }
-
+makeStars(100);
 draw();
