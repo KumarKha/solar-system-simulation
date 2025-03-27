@@ -1,120 +1,279 @@
 /* Reset and base */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9fbfc;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+	margin: 0;
+	padding: 0;
+	font-family: "Baloo 2", sans-serif;
+	background-color: #f5e9ff;
+	color: #2c3e50;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
 }
-
-#solar-section{
-    padding: 2rem 1rem;
-    text-align: center;
+h1,
+h2 {
+	font-family: "Luckiest Guy", cursive;
+}
+section {
+	height: 100vh;
+}
+#solar-section {
+	padding: 2rem 1rem;
+	text-align: center;
+}
+.solarDescription {
+	max-width: 600px;
+	margin: 0.5rem auto 1.5rem;
+	font-size: 1rem;
+	color: #4fc3f7;
+	text-align: center;
+	line-height: 1.4;
+	font-weight: 400;
+	background-color: rgba(255, 255, 255, 0.6);
+	padding: 0.75rem 1.25rem;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 /* Canvas styling */
-canvas {
-    background-color: #0b0c10;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    margin-bottom: 1rem;
+
+.canvasContainer {
+	position: relative;
+	display: inline-block;
 }
-.canvasContainer{
-    position: relative;
-    display: inline-block;
+canvas {
+	background-color: #0b0c10;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+	margin-bottom: 1rem;
+}
+.sectionHeader {
+	grid-column: 1 / -1;
+	text-align: center;
+	margin-bottom: 1rem;
+	font-size: 2rem;
+	color: #ff8a65;
 }
 #settingsIcon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
-    background-color: white;
-    border-radius: 50%;
-    padding: 0.5rem;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    z-index: 10;
-    transition: background-color 0.2s;
-    user-select: none;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 1.5rem;
+	background-color: white;
+	border-radius: 50%;
+	padding: 0.5rem;
+	cursor: pointer;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+	z-index: 10;
+	transition: background-color 0.2s;
+	user-select: none;
 }
 #settingsIcon:hover {
-    background-color: #e0f7ff;
+	background-color: #e0f7ff;
 }
 .popup {
-    position: absolute;
-    top: 80px;
-    right: 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    padding: 1rem;
-    z-index: 999;
-    transition: all 0.3s ease;
+	position: absolute;
+	top: 80px;
+	right: 20px;
+	background: white;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+	padding: 1rem;
+	z-index: 999;
+	transition: all 0.3s ease;
 }
 
 .popup.hidden {
-    display: none;
+	display: none;
 }
-
 
 /* Controls container */
 .controls {
-    background-color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    min-width: 300px;
-    align-items: flex-start;
+	background-color: white;
+	padding: 1rem 1.5rem;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	min-width: 300px;
+	align-items: flex-start;
 }
 .controls button#closePopup {
-    align-self: flex-end;
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #888;
+	align-self: flex-end;
+	background: none;
+	border: none;
+	font-size: 1.2rem;
+	cursor: pointer;
+	color: #888;
 }
 
 /* Label + inputs */
-#solar-section label {
-    font-weight: 600;
-    margin-bottom: 0.25rem;
+#solarSection label {
+	font-weight: 600;
+	margin-bottom: 0.25rem;
 }
 
-#solar-section input[type="range"] {
-    width: 100%;
-    accent-color: #4fc3f7; /* light blue accent */
+#solarSection input[type="range"] {
+	width: 100%;
+	accent-color: #4fc3f7; /* light blue accent */
+}
+#solarSection h1 {
+	text-align: center;
+	margin-top: 2rem;
+	font-size: 45px;
 }
 
 #speedValue {
-    font-size: 0.95rem;
-    color: #4fc3f7;
-    font-weight: 600;
-
+	font-size: 0.95rem;
+	color: #4fc3f7;
+	font-weight: 600;
 }
 
-#solar-section select {
-    padding: 0.5rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    background-color: #f0f8ff;
-    color: #333;
+#solarSection select {
+	padding: 0.5rem;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	font-size: 1rem;
+	background-color: #f0f8ff;
+	color: #333;
 }
 
-.planetCard{
-    color:gray
-
+.planetCard {
+	display: flex;
+	padding: 2rem 1rem;
 }
-.planetCard img{
-    width: 100px;
-    height: auto;
-    border-radius: 12px;
+
+.planetContainer {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, auto);
+	gap: 2rem;
+	justify-items: center;
+}
+.planetCard img {
+	width: 256px;
+	height: auto;
+	border-radius: 12px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 0 0 12px rgba(79, 195, 247, 0.3);
+}
+
+.planet {
+	background: rgba(255, 255, 255, 0.85);
+	border-radius: 12px;
+	padding: 1.5rem;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 350px;
+	min-height: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	overflow-y: auto;
+	box-sizing: border-box;
+	scrollbar-width: thin; /* for Firefox */
+}
+.planet::-webkit-scrollbar {
+	width: 6px;
+}
+
+.planet::-webkit-scrollbar-thumb {
+	background-color: #4fc3f7;
+	border-radius: 4px;
+}
+.planet h2 {
+	text-align: center;
+}
+.planet p {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	line-height: 1.4;
+}
+
+.planet h4 {
+	margin: 0.5rem 0 0.2rem;
+	font-size: 1rem;
+	font-weight: bold;
+	color: #333;
+}
+
+.planet span {
+	display: block;
+	margin-bottom: 0.5rem;
+	color: #444;
+}
+
+.planetHeader {
+	position: sticky;
+	top: 0;
+	background: rgba(255, 255, 255, 0.95);
+	z-index: 1;
+	padding: 1rem 0;
+	text-align: center;
+}
+
+.planetHeader img {
+	width: 200px;
+	height: auto;
+	margin: 0 auto;
+	display: block;
+	border-radius: 12px;
+	box-shadow: 0 0 12px rgba(79, 195, 247, 0.3);
+}
+
+.planetNav {
+	text-align: center;
+	margin: 2rem auto;
+}
+
+.planetNav h2 {
+	font-family: "Luckiest Guy", cursive;
+	color: #ff8a65;
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	position: relative;
+	display: inline-block;
+}
+
+.planetNav h2::after {
+	content: "";
+	display: block;
+	width: 80%;
+	height: 5px;
+	background-color: #4fc3f7;
+	margin: 0.5rem auto 0;
+	border-radius: 5px;
+}
+
+/* Nav buttons */
+#navList {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	gap: 1.5rem;
+	margin-top: 1rem;
+}
+
+#navList li a {
+	display: inline-block;
+	background-color: #4fc3f7;
+	color: white;
+	font-family: "Baloo 2", sans-serif;
+	font-size: 1rem;
+	font-weight: bold;
+	padding: 0.75rem 1.5rem;
+	border: none;
+	border-radius: 12px;
+	text-decoration: none;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#navList li a:hover {
+	background-color: #00bcd4;
+	transform: translateY(-2px);
 }

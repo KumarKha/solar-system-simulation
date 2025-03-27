@@ -5,14 +5,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Solar System Simulation</title>
 		<link rel="stylesheet" href="style.css" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Luckiest+Guy&display=swap");
+		</style>
 	</head>
 	<body>
-		<section id="solar-section">
+		<section id="solarSection">
 			<h1>Our Solar System</h1>
+			<p class="solarDescription">
+				Our solar system is a dazzling dance of planets, moons, and stardust
+				orbiting a brilliant sun.
+			</p>
 			<div class="canvasContainer">
-				<canvas id="solarCanvas" width="700" height="700"></canvas>
+				<canvas id="solarCanvas" width="800" height="750"></canvas>
 				<div id="settingsIcon">⚙️</div>
-
 				<div id="popup" class="popup hidden">
 					<div class="controls">
 						<label for="speedSlider">Orbit Speed:</label>
@@ -36,13 +42,225 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<section class="planetCard">
-			<div class="planet" id="mercury">
-				<h2>Mercury</h2>
-				<img src="/images/mercury.png" alt="mercury" />
+			<div class="planetNav">
+				<h2>From Solid Ground to Gas Clouds: Explore Them All!</h2>
+				<ul id="navList">
+					<li><a href="#terrestrial">Explore the Terrestrials</a></li>
+					<li><a href="#giants">Explore the Giants</a></li>
+				</ul>
 			</div>
-			<div class="planet" id="venus"></div>
+		</section>
+
+		<section class="planetCard" id="terrestrial">
+			<div class="planetContainer">
+				<h2 class="sectionHeader">Terrestrial</h2>
+				<div class="planet" id="mercury">
+					<div class="planetHeader">
+						<h2>Mercury</h2>
+						<img src="/images/mercury.png" alt="mercury" />
+					</div>
+					<h4>Planet Type:</h4>
+					<span>Terrestrial</span>
+					<h4>Distance from Sun:</h4>
+					<span>~58 million km (36 million mi)</span>
+					<h4>Avg Temperature:</h4>
+					<span>167°C (333°F)</span>
+					<h4>Orbital Speed:</h4>
+					<span>~47.9 km/s</span>
+					<h4>Orbit Period:</h4>
+					<span>~0.24 Earth years (88 days)</span>
+					<h4>Description:</h4>
+					<p>
+						Mercury is the smallest planet and orbits closest to the Sun. It has
+						no atmosphere to trap heat, so temperatures swing wildly between
+						extreme heat and freezing cold.The surface is rocky and heavily
+						cratered, much like the Moon.
+					</p>
+					<h4>Fun Fact:</h4>
+					<span
+						>A day on Mercury (sunrise to sunrise) lasts 176 Earth days!</span
+					>
+				</div>
+				<div class="planet" id="venus">
+					<div class="planetHeader">
+						<h2>Venus</h2>
+						<img src="/images/venus.png" alt="venus" />
+					</div>
+					<h4>Planet Type:</h4>
+					<span>Terrestrial</span>
+					<h4>Distance from Sun:</h4>
+					<span>~108 million km (67 million mi)</span>
+					<h4>Avg Temperature:</h4>
+					<span>464°C (867°F)</span>
+					<h4>Orbital Speed:</h4>
+					<span>~35 km/s</span>
+					<h4>Orbit Period:</h4>
+					<span>~0.62 Earth years (225 days)</span>
+					<h4>Description:</h4>
+					<p>
+						Venus is Earth's twin in size but has a dense, toxic atmosphere that
+						traps heat, making it the hottest planet. Its surface is volcanic
+						and shrouded in clouds of acid.
+					</p>
+					<h4>Fun Fact:</h4>
+					<span
+						>A day on Venus is longer than a year, and it spins backward!
+					</span>
+				</div>
+				<div class="planet" id="earth">
+					<div class="planetHeader">
+						<h2>Earth</h2>
+						<img src="/images/earth.png" alt="earth" />
+					</div>
+					<div class="fact">
+						<h4>Planet Type:</h4>
+						<span>Terrestrial</span>
+					</div>
+					<h4>Distance from Sun:</h4>
+					<span>~150 million km (93 million mi)</span>
+					<h4>Avg Temperature:</h4>
+					<span>15°C (59°F)</span>
+					<h4>Orbital Speed:</h4>
+					<span> ~29.8 km/s</span>
+					<h4>Orbit Period:</h4>
+					<span>1 Earth year (365.25 days)</span>
+					<h4>Description:</h4>
+					<p>
+						The only planet known to support life, Earth has a breathable
+						atmosphere, liquid water, and a protective magnetic field. It's just
+						the right distance from the Sun — the "Goldilocks zone."
+					</p>
+					<h4>Fun Fact:</h4>
+					<span>Earth is the only planet not named after a god.</span>
+				</div>
+				<div class="planet" id="mars">
+					<div class="planetHeader">
+						<h2>Mars</h2>
+						<img src="/images/mars.png" alt="mars" />
+					</div>
+					<h4>Planet Type:</h4>
+					<span>Terrestrial</span>
+					<h4>Distance from Sun:</h4>
+					<span>~228 million km (142 million mi)</span>
+					<h4>Avg Temperature:</h4>
+					<span>-65°C (-85°F)</span>
+					<h4>Orbital Speed:</h4>
+					<span>~24.1 km/s</span>
+					<h4>Orbit Period:</h4>
+					<span>~1.88 Earth years</span>
+					<h4>Description:</h4>
+					<p>
+						Known as the Red Planet, Mars has dusty deserts, polar ice caps, and
+						signs of ancient rivers. It's the most Earth-like planet and a top
+						candidate for future human exploration.
+					</p>
+					<h4>Fun Fact:</h4>
+					<span>
+						Mars has the tallest volcano in the solar system — Olympus Mons!
+					</span>
+				</div>
+			</div>
+		</section>
+		<section class="planetCard" id="giants">
+			<div class="planetContainer">
+				<h2 class="sectionHeader">Giants</h2>
+				<div class="planet" id="jupiter">
+					<div class="planetHeader">
+						<h2>Jupiter</h2>
+						<img src="/images/Jupiter.png" alt="jupiter" />
+					</div>
+					<h4>Planet Type:</h4>
+					<span>Gas Giant</span>
+					<h4>Distance from Sun:</h4>
+					<span>~778 million km (484 million mi)</span>
+					<h4>Avg Temperature:</h4>
+					<span>-110°C (-166°F)</span>
+					<h4>Orbital Speed:</h4>
+					<span>~13.1 km/s</span>
+					<h4>Orbit Period:</h4>
+					<span>~11.86 Earth years</span>
+					<h4>Description:</h4>
+					<p>
+						Jupiter is the largest planet, with a swirling atmosphere and a
+						massive storm called the Great Red Spot. It has more than 90 moons
+						and a strong magnetic field.
+					</p>
+					<h4>Fun Fact:</h4>
+					<span>Jupiter's moon Ganymede is larger than Mercury!</span>
+				</div>
+				<div class="planet" id="saturn">
+					<div class="planetHeader">
+						<h2>Saturn</h2>
+						<img src="/images/saturn.png" alt="saturn" />
+					</div>
+					<h4>Planet Type:</h4>
+					<span>Gas Giant</span>
+					<h4>Distance from Sun:</h4>
+					<span>~1.43 billion km (889 million mi)</span>
+					<h4>Avg Temperature:</h4>
+					<span>-140°C (-220°F)</span>
+					<h4>Orbital Speed:</h4>
+					<span>~9.7 km/s</span>
+					<h4>Orbit Period:</h4>
+					<span>~29.45 Earth years</span>
+					<h4>Description:</h4>
+					<p>
+						Famous for its dazzling ring system, Saturn is a giant made of
+						mostly hydrogen and helium. It has over 140 moons, including the
+						fascinating Titan.
+					</p>
+					<h4>Fun Fact:</h4>
+					<span>Saturn is so light it could float in water!</span>
+				</div>
+				<div class="planet" id="uranus">
+					<div class="planetHeader">
+						<h2>Uranus</h2>
+						<img src="/images/uranus.png" alt="uranus" />
+					</div>
+					<h4>Planet Type:</h4>
+					<span> Ice Giant</span>
+					<h4>Distance from Sun:</h4>
+					<span>~2.87 billion km (1.78 billion mi)</span>
+					<h4>Avg Temperature:</h4>
+					<span>-195°C (-319°F)</span>
+					<h4>Orbital Speed:</h4>
+					<span>~6.8 km/s</span>
+					<h4>Orbit Period:</h4>
+					<span>~84 Earth years</span>
+					<h4>Description:</h4>
+					<p>
+						Uranus is an ice giant with a pale blue tint and a bizarre tilt — it
+						spins on its side! This extreme axis gives it the most unusual
+						seasons in the solar system.
+					</p>
+					<h4>Fun Fact:</h4>
+					<span> A season on Uranus lasts 21 Earth years.</span>
+				</div>
+				<div class="planet" id="neptune">
+					<div class="planetHeader">
+						<h2>Neptune</h2>
+						<img src="/images/neptune.png" alt="neptune" />
+					</div>
+					<h4>Planet Type:</h4>
+					<span> Ice Giant</span>
+					<h4>Distance from Sun:</h4>
+					<span>~4.5 billion km (2.8 billion mi)</span>
+					<h4>Avg Temperature:</h4>
+					<span> -200°C (-328°F)</span>
+					<h4>Orbital Speed:</h4>
+					<span>~5.4 km/s</span>
+					<h4>Orbit Period:</h4>
+					<span> ~164.8 Earth years</span>
+					<h4>Description:</h4>
+					<p>
+						The farthest known planet, Neptune is deep blue and full of storms.
+						Despite its distance, it has the fastest winds recorded in the solar
+						system.
+					</p>
+					<h4>Fun Fact:</h4>
+					<span>Winds on Neptune can reach 2,100 km/h (1,300 mph)!</span>
+				</div>
+			</div>
 		</section>
 
 		<script src="script.js" defer></script>
