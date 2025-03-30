@@ -151,6 +151,12 @@ canvas {
 	gap: 2rem;
 	justify-items: center;
 }
+/* @media screen and (max-width: 1600px) {
+	.planetContainer {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+	}
+} */
 .planetCard img {
 	width: 256px;
 	height: auto;

@@ -19,9 +19,26 @@ document.getElementById("orbitType").addEventListener("change", (e) => {
 
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
-
+const sunImg = new Image();
+sunImg.src = "icons/sunIcon.png";
+const earthImg = new Image();
+earthImg.src = "icons/earthIcon.png";
+const jupiterImg = new Image();
+jupiterImg.src = "icons/jupiterIcon.png";
+const marsImg = new Image();
+marsImg.src = "icons/marsIcon.png";
+const mercuryImg = new Image();
+mercuryImg.src = "icons/mercuryIcon.png";
+const neptuneImg = new Image();
+neptuneImg.src = "icons/neptuneIcon.png";
+const saturnImg = new Image();
+saturnImg.src = "icons/saturnIcon.png";
+const venusImg = new Image();
+venusImg.src = "icons/venusIcon.png";
+const uranusImg = new Image();
+uranusImg.src = "icons/uranusIcon.png";
 class Planet {
-	constructor(color, radius, angle, speed, size) {
+	constructor(color, radius, angle, speed, size, image = null) {
 		this.color = color;
 		this.radius = radius;
 		this.angle = angle;
@@ -29,6 +46,7 @@ class Planet {
 		this.size = size;
 		this.moons = [];
 		this.trail = [];
+		this.image = image;
 	}
 	// Treat the moons like planets
 	addMoon(color, radius, angle, speed, size) {
@@ -70,10 +88,21 @@ class Planet {
 		this.drawTrail(centerX, centerY);
 		const { x, y } = this.getPosition(centerX, centerY);
 
-		ctx.beginPath();
-		ctx.arc(x, y, this.size, 0, Math.PI * 2);
-		ctx.fillStyle = this.color;
-		ctx.fill();
+		if (this.image) {
+			const imgSize = this.size * 5.5;
+			ctx.drawImage(
+				this.image,
+				x - imgSize / 2,
+				y - imgSize / 2,
+				imgSize,
+				imgSize
+			);
+		} else {
+			ctx.beginPath();
+			ctx.arc(x, y, this.size, 0, Math.PI * 2);
+			ctx.fillStyle = this.color;
+			ctx.fill();
+		}
 
 		this.moons.forEach((moon) => {
 			moon.update();
@@ -112,26 +141,26 @@ const orbitFunctions = {
 
 const planets = [];
 
-const mercury = new Planet("gray", 50, 0, 0.05, 3);
-const venus = new Planet("orange", 75, 45, 0.035, 5);
-const earth = new Planet("blue", 100, 90, 0.025, 6);
+const mercury = new Planet("gray", 50, 0, 0.05, 3, mercuryImg);
+const venus = new Planet("orange", 75, 45, 0.035, 5, venusImg);
+const earth = new Planet("blue", 100, 90, 0.025, 6, earthImg);
 earth.addMoon("lightgray", 10, 0, 0.1, 2);
 
-const mars = new Planet("red", 140, 135, 0.02, 4);
+const mars = new Planet("red", 140, 135, 0.02, 4, marsImg);
 mars.addMoon("lightblue", 8, 180, 0.12, 1.5);
 
-const jupiter = new Planet("burlywood", 180, 160, 0.012, 10);
+const jupiter = new Planet("burlywood", 180, 160, 0.012, 10, jupiterImg);
 jupiter.addMoon("white", 14, 45, 0.15, 2);
 jupiter.addMoon("gray", 18, 200, 0.08, 2.5);
 
-const saturn = new Planet("gold", 220, 200, 0.01, 9);
+const saturn = new Planet("gold", 220, 200, 0.01, 9, saturnImg);
 saturn.addMoon("lightgray", 12, 60, 0.1, 2);
 saturn.addMoon("white", 16, 180, 0.07, 2);
 
-const uranus = new Planet("lightblue", 260, 240, 0.008, 7);
+const uranus = new Planet("lightblue", 260, 240, 0.008, 7, uranusImg);
 uranus.addMoon("white", 10, 270, 0.09, 1.5);
 
-const neptune = new Planet("royalblue", 300, 300, 0.007, 7);
+const neptune = new Planet("royalblue", 300, 300, 0.007, 7, neptuneImg);
 neptune.addMoon("lightblue", 9, 90, 0.1, 1.5);
 
 planets.push(mercury, venus, earth, mars, jupiter, saturn, uranus, neptune);
@@ -158,11 +187,11 @@ function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	// Draw Sun
-	ctx.beginPath();
-	ctx.arc(centerX, centerY, 15, 0, Math.PI * 2);
-	ctx.fillStyle = "yellow";
-	ctx.fill();
-
+	// ctx.beginPath();
+	// ctx.arc(centerX, centerY, 15, 0, Math.PI * 2);
+	// ctx.fillStyle = "yellow";
+	// ctx.fill();
+	ctx.drawImage(sunImg, centerX - 15, centerY - 15, 50, 50);
 	stars.forEach((star) => {
 		star.alpha += star.delta;
 
