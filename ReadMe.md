@@ -19,12 +19,7 @@
 | Spiral     | Radius increases over time, creating spirals |
 | Wobbly     | Creates wave-like, dynamic motion            |
 
-## 🧪 To-Do / Future Enhancements
 
-- Planet-specific orbit paths
-- Sound effects or background music
-- Add Pluto and other dwarf planets
-- Responsive design tweaks for smaller screens
 
 ## 📄 License
 
