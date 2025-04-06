@@ -16,9 +16,11 @@ h2 {
 	font-family: "Luckiest Guy", cursive;
 }
 section {
-	height: 100vh;
+	min-height: 100vh;
+	padding: 5vh;
+	box-sizing: border-box;
 }
-#solar-section {
+#solarSection {
 	padding: 2rem 1rem;
 	text-align: center;
 }
@@ -40,12 +42,21 @@ section {
 .canvasContainer {
 	position: relative;
 	display: inline-block;
+	width: 100%;
+	max-width: 1000px; /* optional limit */
+	margin: 0 auto;
+	height: auto;
 }
 canvas {
 	background-color: #0b0c10;
 	border-radius: 12px;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 	margin-bottom: 1rem;
+	width: 100%;
+	height: auto;
+	max-height: 80vh;
+	max-width: 100%;
+	display: block;
 }
 .sectionHeader {
 	grid-column: 1 / -1;
@@ -141,7 +152,6 @@ canvas {
 
 .planetCard {
 	display: flex;
-	padding: 2rem 1rem;
 }
 
 .planetContainer {
@@ -151,12 +161,7 @@ canvas {
 	gap: 2rem;
 	justify-items: center;
 }
-/* @media screen and (max-width: 1600px) {
-	.planetContainer {
-		grid-template-columns: 1fr;
-		grid-template-rows: auto;
-	}
-} */
+
 .planetCard img {
 	width: 256px;
 	height: auto;
@@ -174,7 +179,7 @@ canvas {
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 	width: 100%;
 	max-width: 350px;
-	min-height: 500px;
+	min-height: 40vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -182,6 +187,7 @@ canvas {
 	box-sizing: border-box;
 	scrollbar-width: thin; /* for Firefox */
 }
+
 .planet::-webkit-scrollbar {
 	width: 6px;
 }
@@ -282,4 +288,15 @@ canvas {
 #navList li a:hover {
 	background-color: #00bcd4;
 	transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+	.planetCard {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.planetContainer {
+		grid-template-columns: 1fr;
+	}
 }

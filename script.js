@@ -1,5 +1,19 @@
+//Canvas
 const canvas = document.getElementById("solarCanvas");
 const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+	const container = document.querySelector(".canvasContainer");
+	const maxHeight = window.innerHeight * 0.8;
+	canvas.width = container.offsetWidth;
+	canvas.height = Math.min(canvas.width, maxHeight);
+}
+window.addEventListener("resize", () => {
+	resizeCanvas();
+});
+resizeCanvas();
+
+// Controls
 
 const speedSlider = document.getElementById("speedSlider");
 const speedValueDisplay = document.getElementById("speedValue");
@@ -17,8 +31,6 @@ document.getElementById("orbitType").addEventListener("change", (e) => {
 	selectedOrbit = e.target.value;
 });
 
-const centerX = canvas.width / 2;
-const centerY = canvas.height / 2;
 const sunImg = new Image();
 sunImg.src = "icons/sunIcon.png";
 const earthImg = new Image();
@@ -185,6 +197,8 @@ function makeStars(starAmount) {
 
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	const centerX = canvas.width / 2;
+	const centerY = canvas.height / 2;
 
 	// Draw Sun
 	// ctx.beginPath();
